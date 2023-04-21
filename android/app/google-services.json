@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "609862744305",
+    "project_id": "zefferus",
+    "storage_bucket": "zefferus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609862744305:android:77aba2cb65254693c0d150",
+        "android_client_info": {
+          "package_name": "com.zefferus.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609862744305-1ebnnvsunv5ob7nd6qk6h5lm5lngejen.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq37ZME67xeOPL1Iml9c-Judvl5DuIjgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609862744305-1ebnnvsunv5ob7nd6qk6h5lm5lngejen.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609862744305:android:5fbee3ee52e90561c0d150",
+        "android_client_info": {
+          "package_name": "com.zefferus.delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609862744305-1ebnnvsunv5ob7nd6qk6h5lm5lngejen.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq37ZME67xeOPL1Iml9c-Judvl5DuIjgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609862744305-1ebnnvsunv5ob7nd6qk6h5lm5lngejen.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
