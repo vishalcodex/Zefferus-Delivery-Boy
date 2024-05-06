@@ -1,18 +1,18 @@
 class NotificationModel {
-  int id;
-  String title;
-  String description;
-  String image;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  String? title;
+  String? description;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
 
   NotificationModel(
       {this.id,
-        this.title,
-        this.description,
-        this.image,
-        this.createdAt,
-        this.updatedAt});
+      this.title,
+      this.description,
+      this.image,
+      this.createdAt,
+      this.updatedAt});
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -34,10 +34,13 @@ class RouteHelper {
   static String getInitialRoute() => '$initial';
   static String getSplashRoute() => '$splash';
   static String getSignInRoute() => '$signIn';
-  static String getVerificationRoute(String number) => '$verification?number=$number';
+  static String getVerificationRoute(String number) =>
+      '$verification?number=$number';
   static String getMainRoute(String page) => '$main?page=$page';
   static String getForgotPassRoute() => '$forgotPassword';
-  static String getResetPasswordRoute(String phone, String token, String page) => '$resetPassword?phone=$phone&token=$token&page=$page';
+  static String getResetPasswordRoute(
+          String phone, String token, String page) =>
+      '$resetPassword?phone=$phone&token=$token&page=$page';
   static String getOrderDetailsRoute(int id) => '$orderDetails?id=$id';
   static String getUpdateProfileRoute() => '$updateProfile';
   static String getNotificationRoute() => '$notification';
@@ -45,33 +48,58 @@ class RouteHelper {
   static String getTermsRoute() => '$terms';
   static String getPrivacyRoute() => '$privacy';
   static String getLanguageRoute() => '$language';
-  static String getUpdateRoute(bool isUpdate) => '$update?update=${isUpdate.toString()}';
+  static String getUpdateRoute(bool isUpdate) =>
+      '$update?update=${isUpdate.toString()}';
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => SplashScreen()),
     GetPage(name: signIn, page: () => SignInScreen()),
-    GetPage(name: verification, page: () => VerificationScreen(number: Get.parameters['number'])),
-    GetPage(name: main, page: () => DashboardScreen(
-      pageIndex: Get.parameters['page'] == 'home' ? 0 : Get.parameters['page'] == 'order-request' ? 1
-          : Get.parameters['page'] == 'order' ? 2 : Get.parameters['page'] == 'profile' ? 3 : 0,
-    )),
+    GetPage(
+        name: verification,
+        page: () => VerificationScreen(number: Get.parameters['number'] ?? "")),
+    GetPage(
+        name: main,
+        page: () => DashboardScreen(
+              pageIndex: Get.parameters['page'] == 'home'
+                  ? 0
+                  : Get.parameters['page'] == 'order-request'
+                      ? 1
+                      : Get.parameters['page'] == 'order'
+                          ? 2
+                          : Get.parameters['page'] == 'profile'
+                              ? 3
+                              : 0,
+            )),
     GetPage(name: forgotPassword, page: () => ForgetPassScreen()),
-    GetPage(name: resetPassword, page: () => NewPassScreen(
-      resetToken: Get.parameters['token'], number: Get.parameters['phone'], fromPasswordChange: Get.parameters['page'] == 'password-change',
-    )),
-    GetPage(name: orderDetails, page: () {
-      OrderDetailsScreen _orderDetails = Get.arguments;
-      return _orderDetails != null ? _orderDetails : OrderDetailsScreen(
-        orderModel: OrderModel(id: int.parse(Get.parameters['id'])), orderIndex: null, isRunningOrder: null,
-      );
-    }),
+    GetPage(
+        name: resetPassword,
+        page: () => NewPassScreen(
+              resetToken: Get.parameters['token'] ?? "",
+              number: Get.parameters['phone'] ?? "",
+              fromPasswordChange: Get.parameters['page'] == 'password-change',
+            )),
+    GetPage(
+        name: orderDetails,
+        page: () {
+          OrderDetailsScreen? _orderDetails = Get.arguments;
+
+          return _orderDetails ??
+              OrderDetailsScreen(
+                orderModel:
+                    OrderModel(id: int.parse(Get.parameters['id'] ?? "")),
+                orderIndex: 0,
+                isRunningOrder: false,
+              );
+        }),
     GetPage(name: updateProfile, page: () => UpdateProfileScreen()),
     GetPage(name: notification, page: () => NotificationScreen()),
     GetPage(name: runningOrder, page: () => RunningOrderScreen()),
     GetPage(name: terms, page: () => HtmlViewerScreen(isPrivacyPolicy: false)),
     GetPage(name: privacy, page: () => HtmlViewerScreen(isPrivacyPolicy: true)),
     GetPage(name: language, page: () => ChooseLanguageScreen()),
-    GetPage(name: update, page: () => UpdateScreen(isUpdate: Get.parameters['update'] == 'true')),
+    GetPage(
+        name: update,
+        page: () => UpdateScreen(isUpdate: Get.parameters['update'] == 'true')),
   ];
 }

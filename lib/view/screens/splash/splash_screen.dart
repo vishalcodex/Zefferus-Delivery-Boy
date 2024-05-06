@@ -17,17 +17,22 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-  StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
 
   @override
   void initState() {
     super.initState();
 
     bool _firstTime = true;
-    _onConnectivityChanged = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if(!_firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi && result != ConnectivityResult.mobile;
-        isNotConnected ? SizedBox() : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    _onConnectivityChanged = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (!_firstTime) {
+        bool isNotConnected = result != ConnectivityResult.wifi &&
+            result != ConnectivityResult.mobile;
+        isNotConnected
+            ? SizedBox()
+            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
@@ -36,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             textAlign: TextAlign.center,
           ),
         ));
-        if(!isNotConnected) {
+        if (!isNotConnected) {
           _route();
         }
       }
@@ -45,7 +50,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Get.find<SplashController>().initSharedData();
     _route();
-
   }
 
   @override
@@ -57,11 +61,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _route() {
     Get.find<SplashController>().getConfigData().then((isSuccess) {
-      if(isSuccess) {
+      if (isSuccess) {
         Timer(Duration(seconds: 1), () async {
-          if(Get.find<SplashController>().configModel.maintenanceMode) {
+          if (Get.find<SplashController>().configModel.maintenanceMode!) {
             Get.offNamed(RouteHelper.getUpdateRoute(false));
-          }else {
+          } else {
             if (Get.find<AuthController>().isLoggedIn()) {
               Get.find<AuthController>().updateToken();
               await Get.find<AuthController>().getProfile();
@@ -84,11 +88,12 @@ class _SplashScreenState extends State<SplashScreen> {
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Image.asset(Images.logo, width: 150),
-            SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-            Image.asset(Images.logo_name, width: 150),
+            // SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+            // Image.asset(Images.logo_name, width: 150),
             //Text(AppConstants.APP_NAME, style: robotoMedium.copyWith(fontSize: 25), textAlign: TextAlign.center),
-            SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-            Text('suffix_name'.tr, style: robotoMedium, textAlign: TextAlign.center),
+            // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+            // Text('suffix_name'.tr,
+            //     style: robotoMedium, textAlign: TextAlign.center),
           ]),
         ),
       ),

@@ -1,60 +1,60 @@
 class ProfileModel {
-  int id;
-  String fName;
-  String lName;
-  String phone;
-  String email;
-  String identityNumber;
-  String identityType;
-  String identityImage;
-  String image;
-  String fcmToken;
-  int zoneId;
-  int active;
-  double avgRating;
-  int ratingCount;
-  int memberSinceDays;
-  int orderCount;
-  int todaysOrderCount;
-  int thisWeekOrderCount;
-  double cashInHands;
-  int earnings;
-  String type;
-  double balance;
-  double todaysEarning;
-  double thisWeekEarning;
-  double thisMonthEarning;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? email;
+  String? identityNumber;
+  String? identityType;
+  String? identityImage;
+  String? image;
+  String? fcmToken;
+  int? zoneId;
+  int? active;
+  double? avgRating;
+  int? ratingCount;
+  int? memberSinceDays;
+  int? orderCount;
+  int? todaysOrderCount;
+  int? thisWeekOrderCount;
+  double? cashInHands;
+  int? earnings;
+  String? type;
+  double? balance;
+  double? todaysEarning;
+  double? thisWeekEarning;
+  double? thisMonthEarning;
+  String? createdAt;
+  String? updatedAt;
 
   ProfileModel(
       {this.id,
-        this.fName,
-        this.lName,
-        this.phone,
-        this.email,
-        this.identityNumber,
-        this.identityType,
-        this.identityImage,
-        this.image,
-        this.fcmToken,
-        this.zoneId,
-        this.active,
-        this.avgRating,
-        this.memberSinceDays,
-        this.orderCount,
-        this.todaysOrderCount,
-        this.thisWeekOrderCount,
-        this.cashInHands,
-        this.ratingCount,
-        this.createdAt,
-        this.updatedAt,
-        this.earnings,
-        this.type,
-        this.balance,
-        this.todaysEarning,
-        this.thisWeekEarning,
-        this.thisMonthEarning});
+      this.fName,
+      this.lName,
+      this.phone,
+      this.email,
+      this.identityNumber,
+      this.identityType,
+      this.identityImage,
+      this.image,
+      this.fcmToken,
+      this.zoneId,
+      this.active,
+      this.avgRating,
+      this.memberSinceDays,
+      this.orderCount,
+      this.todaysOrderCount,
+      this.thisWeekOrderCount,
+      this.cashInHands,
+      this.ratingCount,
+      this.createdAt,
+      this.updatedAt,
+      this.earnings,
+      this.type,
+      this.balance,
+      this.todaysEarning,
+      this.thisWeekEarning,
+      this.thisMonthEarning});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -6,17 +6,18 @@ import 'package:efood_multivendor_driver/view/base/custom_app_bar.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-
 class HtmlViewerScreen extends StatelessWidget {
   final bool isPrivacyPolicy;
-  HtmlViewerScreen({@required this.isPrivacyPolicy});
+  HtmlViewerScreen({required this.isPrivacyPolicy});
 
   @override
   Widget build(BuildContext context) {
-    String _data = isPrivacyPolicy ? Get.find<SplashController>().configModel.privacyPolicy
-        : Get.find<SplashController>().configModel.termsAndConditions;
+    String _data = isPrivacyPolicy
+        ? Get.find<SplashController>().configModel.privacyPolicy!
+        : Get.find<SplashController>().configModel.termsAndConditions!;
     return Scaffold(
-      appBar: CustomAppBar(title: isPrivacyPolicy ? 'privacy_policy'.tr : 'terms_condition'.tr),
+      appBar: CustomAppBar(
+          title: isPrivacyPolicy ? 'privacy_policy'.tr : 'terms_condition'.tr),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

@@ -1,11 +1,10 @@
 import 'package:efood_multivendor_driver/util/app_constants.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController implements GetxService {
   final SharedPreferences sharedPreferences;
-  ThemeController({@required this.sharedPreferences}) {
+  ThemeController({required this.sharedPreferences}) {
     _loadCurrentTheme();
   }
 

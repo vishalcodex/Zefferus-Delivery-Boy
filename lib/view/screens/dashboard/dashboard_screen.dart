@@ -18,18 +18,18 @@ import 'package:get/get.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;
-  DashboardScreen({@required this.pageIndex});
+  DashboardScreen({required this.pageIndex});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  PageController _pageController;
+  late PageController _pageController;
   int _pageIndex = 0;
-  List<Widget> _screens;
+  late List<Widget> _screens;
   final _channel = const MethodChannel('com.sixamtech/app_retain');
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   //Timer _timer;
   //int _orderCount;
 
@@ -50,7 +50,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     var androidInitialize = AndroidInitializationSettings('notification_icon');
     var iOSInitialize = DarwinInitializationSettings();
-    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings =
+        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationsSettings);
 
@@ -59,20 +60,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
       //   _orderCount = Get.find<OrderController>().latestOrderList.length;
       // }
       print("onMessage: ${message.data}");
-      String _type = message.notification.bodyLocKey;
-      String _orderID = message.notification.titleLocKey;
-      if(_type != 'assign' && _type != 'new_order') {
-        NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
+      String _type = message.notification!.bodyLocKey!;
+      String _orderID = message.notification!.titleLocKey!;
+      if (_type != 'assign' && _type != 'new_order') {
+        NotificationHelper.showNotification(
+            message, flutterLocalNotificationsPlugin, false);
       }
       Get.find<OrderController>().getCurrentOrders();
       Get.find<OrderController>().getLatestOrders();
       //Get.find<OrderController>().getAllOrders();
-      if(_type == 'new_order') {
+      if (_type == 'new_order') {
         //_orderCount = _orderCount + 1;
-        Get.dialog(NewRequestDialog(isRequest: true, onTap: () => _navigateRequestPage()));
-      }else if(_type == 'assign' && _orderID != null && _orderID.isNotEmpty) {
-        Get.dialog(NewRequestDialog(isRequest: false, onTap: () => _setPage(0)));
-      }else if(_type == 'block') {
+        Get.dialog(NewRequestDialog(
+            isRequest: true, onTap: () => _navigateRequestPage()));
+      } else if (_type == 'assign' && _orderID != null && _orderID.isNotEmpty) {
+        Get.dialog(
+            NewRequestDialog(isRequest: false, onTap: () => _setPage(0)));
+      } else if (_type == 'block') {
         Get.find<AuthController>().clearSharedData();
         Get.find<AuthController>().stopLocationRecord();
         Get.offAllNamed(RouteHelper.getSignInRoute());
@@ -88,7 +92,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     //     _orderCount = Get.find<OrderController>().latestOrderList.length;
     //   }
     // });
-
   }
 
   // @override
@@ -98,13 +101,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
   // }
 
   void _navigateRequestPage() {
-    if(Get.find<AuthController>().profileModel != null && Get.find<AuthController>().profileModel.active == 1
-        && Get.find<OrderController>().currentOrderList != null && Get.find<OrderController>().currentOrderList.length < 1) {
+    if (Get.find<AuthController>().profileModel != null &&
+        Get.find<AuthController>().profileModel.active == 1 &&
+        Get.find<OrderController>().currentOrderList != null &&
+        Get.find<OrderController>().currentOrderList.length < 1) {
       _setPage(1);
-    }else {
-      if(Get.find<AuthController>().profileModel == null || Get.find<AuthController>().profileModel.active == 0) {
-        Get.dialog(CustomAlertDialog(description: 'you_are_offline_now'.tr, onOkPressed: () => Get.back()));
-      }else {
+    } else {
+      if (Get.find<AuthController>().profileModel == null ||
+          Get.find<AuthController>().profileModel.active == 0) {
+        Get.dialog(CustomAlertDialog(
+            description: 'you_are_offline_now'.tr,
+            onOkPressed: () => Get.back()));
+      } else {
         //Get.dialog(CustomAlertDialog(description: 'you_have_running_order'.tr, onOkPressed: () => Get.back()));
         _setPage(1);
       }
@@ -115,11 +123,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if(_pageIndex != 0) {
+        if (_pageIndex != 0) {
           _setPage(0);
           return false;
-        }else {
-          if (GetPlatform.isAndroid && Get.find<AuthController>().profileModel.active == 1) {
+        } else {
+          if (GetPlatform.isAndroid &&
+              Get.find<AuthController>().profileModel.active == 1) {
             _channel.invokeMethod('sendToBackground');
             return false;
           } else {
@@ -128,23 +137,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
         }
       },
       child: Scaffold(
-        bottomNavigationBar: GetPlatform.isDesktop ? SizedBox() : BottomAppBar(
-          elevation: 5,
-          notchMargin: 5,
-          shape: CircularNotchedRectangle(),
-
-          child: Padding(
-            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-            child: Row(children: [
-              BottomNavItem(iconData: Icons.home, isSelected: _pageIndex == 0, onTap: () => _setPage(0)),
-              BottomNavItem(iconData: Icons.list_alt_rounded, isSelected: _pageIndex == 1, onTap: () {
-                _navigateRequestPage();
-              }),
-              BottomNavItem(iconData: Icons.shopping_bag, isSelected: _pageIndex == 2, onTap: () => _setPage(2)),
-              BottomNavItem(iconData: Icons.person, isSelected: _pageIndex == 3, onTap: () => _setPage(3)),
-            ]),
-          ),
-        ),
+        bottomNavigationBar: GetPlatform.isDesktop
+            ? SizedBox()
+            : BottomAppBar(
+                elevation: 5,
+                notchMargin: 5,
+                shape: CircularNotchedRectangle(),
+                child: Padding(
+                  padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                  child: Row(children: [
+                    BottomNavItem(
+                        iconData: Icons.home,
+                        isSelected: _pageIndex == 0,
+                        onTap: () => _setPage(0)),
+                    BottomNavItem(
+                        iconData: Icons.list_alt_rounded,
+                        isSelected: _pageIndex == 1,
+                        onTap: () {
+                          _navigateRequestPage();
+                        }),
+                    BottomNavItem(
+                        iconData: Icons.shopping_bag,
+                        isSelected: _pageIndex == 2,
+                        onTap: () => _setPage(2)),
+                    BottomNavItem(
+                        iconData: Icons.person,
+                        isSelected: _pageIndex == 3,
+                        onTap: () => _setPage(3)),
+                  ]),
+                ),
+              ),
         body: PageView.builder(
           controller: _pageController,
           itemCount: _screens.length,

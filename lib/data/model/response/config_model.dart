@@ -1,85 +1,85 @@
 class ConfigModel {
-  String businessName;
-  String logo;
-  String address;
-  String phone;
-  String email;
-  BaseUrls baseUrls;
-  String currencySymbol;
-  bool cashOnDelivery;
-  bool digitalPayment;
-  String termsAndConditions;
-  String privacyPolicy;
-  String aboutUs;
-  String country;
-  DefaultLocation defaultLocation;
-  String appUrlAndroid;
-  String appUrlIos;
-  bool customerVerification;
-  bool orderDeliveryVerification;
-  String currencySymbolDirection;
-  int appMinimumVersionAndroid;
-  int appMinimumVersionIos;
-  double perKmShippingCharge;
-  double minimumShippingCharge;
-  double freeDeliveryOver;
-  bool demo;
-  bool maintenanceMode;
-  int popularFood;
-  int popularRestaurant;
-  int newRestaurant;
-  String orderConfirmationModel;
-  bool showDmEarning;
-  bool canceledByDeliveryman;
-  bool canceledByRestaurant;
-  String timeformat;
-  bool toggleVegNonVeg;
-  bool toggleDmRegistration;
-  bool toggleRestaurantRegistration;
-  int scheduleOrderSlotDuration;
-  int digitAfterDecimalPoint;
+  String? businessName;
+  String? logo;
+  String? address;
+  String? phone;
+  String? email;
+  BaseUrls? baseUrls;
+  String? currencySymbol;
+  bool? cashOnDelivery;
+  bool? digitalPayment;
+  String? termsAndConditions;
+  String? privacyPolicy;
+  String? aboutUs;
+  String? country;
+  DefaultLocation? defaultLocation;
+  String? appUrlAndroid;
+  String? appUrlIos;
+  bool? customerVerification;
+  bool? orderDeliveryVerification;
+  String? currencySymbolDirection;
+  int? appMinimumVersionAndroid;
+  int? appMinimumVersionIos;
+  double? perKmShippingCharge;
+  double? minimumShippingCharge;
+  double? freeDeliveryOver;
+  bool? demo;
+  bool? maintenanceMode;
+  int? popularFood;
+  int? popularRestaurant;
+  int? newRestaurant;
+  String? orderConfirmationModel;
+  bool? showDmEarning;
+  bool? canceledByDeliveryman;
+  bool? canceledByRestaurant;
+  String? timeformat;
+  bool? toggleVegNonVeg;
+  bool? toggleDmRegistration;
+  bool? toggleRestaurantRegistration;
+  int? scheduleOrderSlotDuration;
+  int? digitAfterDecimalPoint;
 
-  ConfigModel(
-      {this.businessName,
-        this.logo,
-        this.address,
-        this.phone,
-        this.email,
-        this.baseUrls,
-        this.currencySymbol,
-        this.cashOnDelivery,
-        this.digitalPayment,
-        this.termsAndConditions,
-        this.privacyPolicy,
-        this.aboutUs,
-        this.country,
-        this.defaultLocation,
-        this.appUrlAndroid,
-        this.appUrlIos,
-        this.customerVerification,
-        this.orderDeliveryVerification,
-        this.currencySymbolDirection,
-        this.appMinimumVersionAndroid,
-        this.appMinimumVersionIos,
-        this.perKmShippingCharge,
-        this.minimumShippingCharge,
-        this.freeDeliveryOver,
-        this.demo,
-        this.maintenanceMode,
-        this.popularFood,
-        this.popularRestaurant,
-        this.newRestaurant,
-        this.orderConfirmationModel,
-        this.showDmEarning,
-        this.canceledByDeliveryman,
-        this.canceledByRestaurant,
-        this.timeformat,
-        this.toggleVegNonVeg,
-        this.toggleDmRegistration,
-        this.toggleRestaurantRegistration,
-        this.scheduleOrderSlotDuration,
-        this.digitAfterDecimalPoint,
-      });
+  ConfigModel({
+    this.businessName,
+    this.logo,
+    this.address,
+    this.phone,
+    this.email,
+    this.baseUrls,
+    this.currencySymbol,
+    this.cashOnDelivery,
+    this.digitalPayment,
+    this.termsAndConditions,
+    this.privacyPolicy,
+    this.aboutUs,
+    this.country,
+    this.defaultLocation,
+    this.appUrlAndroid,
+    this.appUrlIos,
+    this.customerVerification,
+    this.orderDeliveryVerification,
+    this.currencySymbolDirection,
+    this.appMinimumVersionAndroid,
+    this.appMinimumVersionIos,
+    this.perKmShippingCharge,
+    this.minimumShippingCharge,
+    this.freeDeliveryOver,
+    this.demo,
+    this.maintenanceMode,
+    this.popularFood,
+    this.popularRestaurant,
+    this.newRestaurant,
+    this.orderConfirmationModel,
+    this.showDmEarning,
+    this.canceledByDeliveryman,
+    this.canceledByRestaurant,
+    this.timeformat,
+    this.toggleVegNonVeg,
+    this.toggleDmRegistration,
+    this.toggleRestaurantRegistration,
+    this.scheduleOrderSlotDuration,
+    this.digitAfterDecimalPoint,
+  });
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
     businessName = json['business_name'];
@@ -87,7 +87,8 @@ class ConfigModel {
     address = json['address'];
     phone = json['phone'];
     email = json['email'];
-    baseUrls = json['base_urls'] != null ? BaseUrls.fromJson(json['base_urls']) : null;
+    baseUrls =
+        json['base_urls'] != null ? BaseUrls.fromJson(json['base_urls']) : null;
     currencySymbol = json['currency_symbol'];
     cashOnDelivery = json['cash_on_delivery'];
     digitalPayment = json['digital_payment'];
@@ -95,7 +96,9 @@ class ConfigModel {
     privacyPolicy = json['privacy_policy'];
     aboutUs = json['about_us'];
     country = json['country'];
-    defaultLocation = json['default_location'] != null ? DefaultLocation.fromJson(json['default_location']) : null;
+    defaultLocation = json['default_location'] != null
+        ? DefaultLocation.fromJson(json['default_location'])
+        : null;
     appUrlAndroid = json['app_url_android'];
     appUrlIos = json['app_url_ios'];
     customerVerification = json['customer_verification'];
@@ -105,7 +108,9 @@ class ConfigModel {
     appMinimumVersionIos = json['app_minimum_version_ios'];
     perKmShippingCharge = json['per_km_shipping_charge'].toDouble();
     minimumShippingCharge = json['minimum_shipping_charge'].toDouble();
-    freeDeliveryOver = json['free_delivery_over'] != null ? json['free_delivery_over'].toDouble() : null;
+    freeDeliveryOver = json['free_delivery_over'] != null
+        ? json['free_delivery_over'].toDouble()
+        : null;
     demo = json['demo'];
     maintenanceMode = json['maintenance_mode'];
     popularFood = json['popular_food'];
@@ -131,7 +136,7 @@ class ConfigModel {
     data['phone'] = this.phone;
     data['email'] = this.email;
     if (this.baseUrls != null) {
-      data['base_urls'] = this.baseUrls.toJson();
+      data['base_urls'] = this.baseUrls?.toJson() ?? [];
     }
     data['currency_symbol'] = this.currencySymbol;
     data['cash_on_delivery'] = this.cashOnDelivery;
@@ -141,7 +146,7 @@ class ConfigModel {
     data['about_us'] = this.aboutUs;
     data['country'] = this.country;
     if (this.defaultLocation != null) {
-      data['default_location'] = this.defaultLocation.toJson();
+      data['default_location'] = this.defaultLocation?.toJson() ?? [];
     }
     data['app_url_android'] = this.appUrlAndroid;
     data['app_url_ios'] = this.appUrlIos;
@@ -173,32 +178,32 @@ class ConfigModel {
 }
 
 class BaseUrls {
-  String productImageUrl;
-  String customerImageUrl;
-  String bannerImageUrl;
-  String categoryImageUrl;
-  String reviewImageUrl;
-  String notificationImageUrl;
-  String restaurantImageUrl;
-  String restaurantCoverPhotoUrl;
-  String deliveryManImageUrl;
-  String chatImageUrl;
-  String campaignImageUrl;
-  String businessLogoUrl;
+  String? productImageUrl;
+  String? customerImageUrl;
+  String? bannerImageUrl;
+  String? categoryImageUrl;
+  String? reviewImageUrl;
+  String? notificationImageUrl;
+  String? restaurantImageUrl;
+  String? restaurantCoverPhotoUrl;
+  String? deliveryManImageUrl;
+  String? chatImageUrl;
+  String? campaignImageUrl;
+  String? businessLogoUrl;
 
   BaseUrls(
       {this.productImageUrl,
-        this.customerImageUrl,
-        this.bannerImageUrl,
-        this.categoryImageUrl,
-        this.reviewImageUrl,
-        this.notificationImageUrl,
-        this.restaurantImageUrl,
-        this.restaurantCoverPhotoUrl,
-        this.deliveryManImageUrl,
-        this.chatImageUrl,
-        this.campaignImageUrl,
-        this.businessLogoUrl});
+      this.customerImageUrl,
+      this.bannerImageUrl,
+      this.categoryImageUrl,
+      this.reviewImageUrl,
+      this.notificationImageUrl,
+      this.restaurantImageUrl,
+      this.restaurantCoverPhotoUrl,
+      this.deliveryManImageUrl,
+      this.chatImageUrl,
+      this.campaignImageUrl,
+      this.businessLogoUrl});
 
   BaseUrls.fromJson(Map<String, dynamic> json) {
     productImageUrl = json['product_image_url'];
@@ -234,8 +239,8 @@ class BaseUrls {
 }
 
 class DefaultLocation {
-  String lat;
-  String lng;
+  String? lat;
+  String? lng;
 
   DefaultLocation({this.lat, this.lng});
 
@@ -246,8 +251,8 @@ class DefaultLocation {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['lat'] = this.lat;
-    data['lng'] = this.lng;
+    data['lat'] = this.lat ?? "";
+    data['lng'] = this.lng ?? "";
     return data;
   }
 }

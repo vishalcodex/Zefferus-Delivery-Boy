@@ -1,8 +1,8 @@
 class PaginatedOrderModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<OrderModel> orders;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<OrderModel>? orders;
 
   PaginatedOrderModel({this.totalSize, this.limit, this.offset, this.orders});
 
@@ -13,7 +13,7 @@ class PaginatedOrderModel {
     if (json['orders'] != null) {
       orders = [];
       json['orders'].forEach((v) {
-        orders.add(new OrderModel.fromJson(v));
+        orders!.add(new OrderModel.fromJson(v));
       });
     }
   }
@@ -24,78 +24,77 @@ class PaginatedOrderModel {
     data['limit'] = this.limit;
     data['offset'] = this.offset;
     if (this.orders != null) {
-      data['orders'] = this.orders.map((v) => v.toJson()).toList();
+      data['orders'] = this.orders!.map((v) => v.toJson()).toList();
     }
     return data;
   }
-
 }
 
 class OrderModel {
-  int id;
-  int userId;
-  double orderAmount;
-  double couponDiscountAmount;
-  String paymentStatus;
-  String orderStatus;
-  double totalTaxAmount;
-  String paymentMethod;
-  String transactionReference;
-  int deliveryAddressId;
-  int deliveryManId;
-  String orderType;
-  int restaurantId;
-  String createdAt;
-  String updatedAt;
-  double deliveryCharge;
-  double originalDeliveryCharge;
-  double dmTips;
-  String scheduleAt;
-  String restaurantName;
-  String restaurantAddress;
-  String restaurantLat;
-  String restaurantLng;
-  String restaurantLogo;
-  String restaurantPhone;
-  String restaurantDeliveryTime;
-  int detailsCount;
-  String orderNote;
-  DeliveryAddress deliveryAddress;
-  Customer customer;
-  int processingTime;
+  int? id;
+  int? userId;
+  double? orderAmount;
+  double? couponDiscountAmount;
+  String? paymentStatus;
+  String? orderStatus;
+  double? totalTaxAmount;
+  String? paymentMethod;
+  String? transactionReference;
+  int? deliveryAddressId;
+  int? deliveryManId;
+  String? orderType;
+  int? restaurantId;
+  String? createdAt;
+  String? updatedAt;
+  double? deliveryCharge;
+  double? originalDeliveryCharge;
+  double? dmTips;
+  String? scheduleAt;
+  String? restaurantName;
+  String? restaurantAddress;
+  String? restaurantLat;
+  String? restaurantLng;
+  String? restaurantLogo;
+  String? restaurantPhone;
+  String? restaurantDeliveryTime;
+  int? detailsCount;
+  String? orderNote;
+  DeliveryAddress? deliveryAddress;
+  Customer? customer;
+  int? processingTime;
 
   OrderModel(
       {this.id,
-        this.userId,
-        this.orderAmount,
-        this.couponDiscountAmount,
-        this.paymentStatus,
-        this.orderStatus,
-        this.totalTaxAmount,
-        this.paymentMethod,
-        this.transactionReference,
-        this.deliveryAddressId,
-        this.deliveryManId,
-        this.orderType,
-        this.restaurantId,
-        this.createdAt,
-        this.updatedAt,
-        this.deliveryCharge,
-        this.originalDeliveryCharge,
-        this.dmTips,
-        this.scheduleAt,
-        this.restaurantName,
-        this.restaurantAddress,
-        this.restaurantLat,
-        this.restaurantLng,
-        this.restaurantLogo,
-        this.restaurantPhone,
-        this.restaurantDeliveryTime,
-        this.detailsCount,
-        this.orderNote,
-        this.deliveryAddress,
-        this.customer,
-        this.processingTime});
+      this.userId,
+      this.orderAmount,
+      this.couponDiscountAmount,
+      this.paymentStatus,
+      this.orderStatus,
+      this.totalTaxAmount,
+      this.paymentMethod,
+      this.transactionReference,
+      this.deliveryAddressId,
+      this.deliveryManId,
+      this.orderType,
+      this.restaurantId,
+      this.createdAt,
+      this.updatedAt,
+      this.deliveryCharge,
+      this.originalDeliveryCharge,
+      this.dmTips,
+      this.scheduleAt,
+      this.restaurantName,
+      this.restaurantAddress,
+      this.restaurantLat,
+      this.restaurantLng,
+      this.restaurantLogo,
+      this.restaurantPhone,
+      this.restaurantDeliveryTime,
+      this.detailsCount,
+      this.orderNote,
+      this.deliveryAddress,
+      this.customer,
+      this.processingTime});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -166,10 +165,10 @@ class OrderModel {
     data['details_count'] = this.detailsCount;
     data['order_note'] = this.orderNote;
     if (this.deliveryAddress != null) {
-      data['delivery_address'] = this.deliveryAddress.toJson();
+      data['delivery_address'] = this.deliveryAddress!.toJson();
     }
     if (this.customer != null) {
-      data['customer'] = this.customer.toJson();
+      data['customer'] = this.customer!.toJson();
     }
     data['processing_time'] = this.processingTime;
     return data;
@@ -177,36 +176,36 @@ class OrderModel {
 }
 
 class DeliveryAddress {
-  int id;
-  String addressType;
-  String contactPersonNumber;
-  String address;
-  String latitude;
-  String longitude;
-  int userId;
-  String contactPersonName;
-  String createdAt;
-  String updatedAt;
-  int zoneId;
-  String streetNumber;
-  String house;
-  String floor;
+  int? id;
+  String? addressType;
+  String? contactPersonNumber;
+  String? address;
+  String? latitude;
+  String? longitude;
+  int? userId;
+  String? contactPersonName;
+  String? createdAt;
+  String? updatedAt;
+  int? zoneId;
+  String? streetNumber;
+  String? house;
+  String? floor;
 
   DeliveryAddress(
       {this.id,
-        this.addressType,
-        this.contactPersonNumber,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.userId,
-        this.contactPersonName,
-        this.createdAt,
-        this.updatedAt,
-        this.zoneId,
-        this.streetNumber,
-        this.house,
-        this.floor});
+      this.addressType,
+      this.contactPersonNumber,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.userId,
+      this.contactPersonName,
+      this.createdAt,
+      this.updatedAt,
+      this.zoneId,
+      this.streetNumber,
+      this.house,
+      this.floor});
 
   DeliveryAddress.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -246,26 +245,26 @@ class DeliveryAddress {
 }
 
 class Customer {
-  int id;
-  String fName;
-  String lName;
-  String phone;
-  String email;
-  String image;
-  String createdAt;
-  String updatedAt;
-  String cmFirebaseToken;
+  int? id;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? email;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
+  String? cmFirebaseToken;
 
   Customer(
       {this.id,
-        this.fName,
-        this.lName,
-        this.phone,
-        this.email,
-        this.image,
-        this.createdAt,
-        this.updatedAt,
-        this.cmFirebaseToken});
+      this.fName,
+      this.lName,
+      this.phone,
+      this.email,
+      this.image,
+      this.createdAt,
+      this.updatedAt,
+      this.cmFirebaseToken});
 
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];

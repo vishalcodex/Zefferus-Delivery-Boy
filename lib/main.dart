@@ -18,10 +18,11 @@ import 'package:url_strategy/url_strategy.dart';
 import 'controller/auth_controller.dart';
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
-  if(!GetPlatform.isWeb) {
+  if (!GetPlatform.isWeb) {
     HttpOverrides.global = new MyHttpOverrides();
   }
   setPathUrlStrategy();
@@ -34,14 +35,14 @@ Future<void> main() async {
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(e) {}
+  } catch (e) {}
 
   runApp(MyApp(languages: _languages));
 }
 
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> languages;
-  MyApp({@required this.languages});
+  MyApp({required this.languages});
 
   void _route() {
     Get.find<SplashController>().getConfigData().then((bool isSuccess) async {
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(GetPlatform.isWeb) {
+    if (GetPlatform.isWeb) {
       Get.find<SplashController>().initSharedData();
       _route();
     }
@@ -63,19 +64,23 @@ class MyApp extends StatelessWidget {
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
-          return (GetPlatform.isWeb && splashController.configModel == null) ? SizedBox() : GetMaterialApp(
-            title: AppConstants.APP_NAME,
-            debugShowCheckedModeBanner: false,
-            navigatorKey: Get.key,
-            theme: themeController.darkTheme ? dark : light,
-            locale: localizeController.locale,
-            translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode),
-            initialRoute: RouteHelper.getSplashRoute(),
-            getPages: RouteHelper.routes,
-            defaultTransition: Transition.topLevel,
-            transitionDuration: Duration(milliseconds: 500),
-          );
+          return (GetPlatform.isWeb && splashController.configModel == null)
+              ? SizedBox()
+              : GetMaterialApp(
+                  title: AppConstants.APP_NAME,
+                  debugShowCheckedModeBanner: false,
+                  navigatorKey: Get.key,
+                  theme: themeController.darkTheme ? dark : light,
+                  locale: localizeController.locale,
+                  translations: Messages(languages: languages),
+                  fallbackLocale: Locale(
+                      AppConstants.languages[0].languageCode!,
+                      AppConstants.languages[0].countryCode),
+                  initialRoute: RouteHelper.getSplashRoute(),
+                  getPages: RouteHelper.routes,
+                  defaultTransition: Transition.topLevel,
+                  transitionDuration: Duration(milliseconds: 500),
+                );
         });
       });
     });
@@ -83,8 +88,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext context) {
-    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-  }
+  // @override
+  // HttpClient createHttpClient(SecurityContext context) {
+  //   return super.createHttpClient(context)
+  //     ..badCertificateCallback =
+  //         (X509Certificate cert, String host, int port) => true;
+  // }
 }

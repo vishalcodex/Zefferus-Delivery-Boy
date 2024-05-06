@@ -3,7 +3,7 @@ import 'package:efood_multivendor_driver/util/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class LanguageRepo {
-  List<LanguageModel> getAllLanguages({BuildContext context}) {
+  List<LanguageModel> getAllLanguages({required BuildContext context}) {
     return AppConstants.languages;
   }
 }
