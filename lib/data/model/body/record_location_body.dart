@@ -1,10 +1,11 @@
 class RecordLocationBody {
-  String token;
-  double longitude;
-  double latitude;
-  String location;
+  String? token;
+  double? longitude;
+  double? latitude;
+  String? location;
 
-  RecordLocationBody({this.token, this.longitude, this.latitude, this.location});
+  RecordLocationBody(
+      {this.token, this.longitude, this.latitude, this.location});
 
   RecordLocationBody.fromJson(Map<String, dynamic> json) {
     token = json['token'];

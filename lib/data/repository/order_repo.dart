@@ -5,7 +5,6 @@ import 'package:efood_multivendor_driver/data/model/body/record_location_body.da
 import 'package:efood_multivendor_driver/data/model/body/update_status_body.dart';
 import 'package:efood_multivendor_driver/data/model/response/ignore_model.dart';
 import 'package:efood_multivendor_driver/util/app_constants.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/state_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,14 +12,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 class OrderRepo extends GetxService {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  OrderRepo({@required this.apiClient, @required this.sharedPreferences});
+  OrderRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getAllOrders() {
     return apiClient.getData(AppConstants.ALL_ORDERS_URI + getUserToken());
   }
 
   Future<Response> getCompletedOrderList(int offset) async {
-    return await apiClient.getData('${AppConstants.ALL_ORDERS_URI}?token=${getUserToken()}&offset=$offset&limit=10');
+    return await apiClient.getData(
+        '${AppConstants.ALL_ORDERS_URI}?token=${getUserToken()}&offset=$offset&limit=10');
   }
 
   Future<Response> getCurrentOrders() {
@@ -33,25 +33,30 @@ class OrderRepo extends GetxService {
 
   Future<Response> recordLocation(RecordLocationBody recordLocationBody) {
     recordLocationBody.token = getUserToken();
-    return apiClient.postData(AppConstants.RECORD_LOCATION_URI, recordLocationBody.toJson());
+    return apiClient.postData(
+        AppConstants.RECORD_LOCATION_URI, recordLocationBody.toJson());
   }
 
   Future<Response> updateOrderStatus(UpdateStatusBody updateStatusBody) {
     updateStatusBody.token = getUserToken();
-    return apiClient.postData(AppConstants.UPDATE_ORDER_STATUS_URI, updateStatusBody.toJson());
+    return apiClient.postData(
+        AppConstants.UPDATE_ORDER_STATUS_URI, updateStatusBody.toJson());
   }
 
   Future<Response> updatePaymentStatus(UpdateStatusBody updateStatusBody) {
     updateStatusBody.token = getUserToken();
-    return apiClient.postData(AppConstants.UPDATE_PAYMENT_STATUS_URI, updateStatusBody.toJson());
+    return apiClient.postData(
+        AppConstants.UPDATE_PAYMENT_STATUS_URI, updateStatusBody.toJson());
   }
 
   Future<Response> getOrderDetails(int orderID) {
-    return apiClient.getData('${AppConstants.ORDER_DETAILS_URI}${getUserToken()}&order_id=$orderID');
+    return apiClient.getData(
+        '${AppConstants.ORDER_DETAILS_URI}${getUserToken()}&order_id=$orderID');
   }
 
   Future<Response> acceptOrder(int orderID) {
-    return apiClient.postData(AppConstants.ACCEPT_ORDER_URI, {"_method": "put", 'token': getUserToken(), 'order_id': orderID});
+    return apiClient.postData(AppConstants.ACCEPT_ORDER_URI,
+        {"_method": "put", 'token': getUserToken(), 'order_id': orderID});
   }
 
   String getUserToken() {
@@ -68,11 +73,11 @@ class OrderRepo extends GetxService {
 
   List<IgnoreModel> getIgnoreList() {
     List<IgnoreModel> _ignoreList = [];
-    List<String> _stringList = sharedPreferences.getStringList(AppConstants.IGNORE_LIST) ?? [];
+    List<String> _stringList =
+        sharedPreferences.getStringList(AppConstants.IGNORE_LIST) ?? [];
     _stringList.forEach((ignore) {
       _ignoreList.add(IgnoreModel.fromJson(jsonDecode(ignore)));
     });
     return _ignoreList;
   }
-
 }

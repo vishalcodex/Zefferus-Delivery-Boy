@@ -1,8 +1,8 @@
 class UpdateStatusBody {
-  String token;
-  int orderId;
-  String status;
-  String otp;
+  String? token;
+  int? orderId;
+  String? status;
+  String? otp;
   String method = 'put';
 
   UpdateStatusBody({this.token, this.orderId, this.status, this.otp});

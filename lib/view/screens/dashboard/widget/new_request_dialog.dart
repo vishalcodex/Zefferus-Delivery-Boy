@@ -13,14 +13,14 @@ class NewRequestDialog extends StatefulWidget {
   final bool isRequest;
   final Function onTap;
 
-  NewRequestDialog({@required this.isRequest, @required this.onTap});
+  NewRequestDialog({required this.isRequest, required this.onTap});
 
   @override
   State<NewRequestDialog> createState() => _NewRequestDialogState();
 }
 
 class _NewRequestDialogState extends State<NewRequestDialog> {
-  Timer _timer;
+  late Timer _timer;
 
   @override
   void initState() {

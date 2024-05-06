@@ -1,15 +1,14 @@
 import 'package:efood_multivendor_driver/data/api/api_checker.dart';
 import 'package:efood_multivendor_driver/data/model/response/config_model.dart';
 import 'package:efood_multivendor_driver/data/repository/splash_repo.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class SplashController extends GetxController implements GetxService {
   final SplashRepo splashRepo;
-  SplashController({@required this.splashRepo});
+  SplashController({required this.splashRepo});
 
-  ConfigModel _configModel;
+  late ConfigModel _configModel;
   DateTime _currentTime = DateTime.now();
   bool _firstTimeConnectionCheck = true;
 
@@ -20,10 +19,10 @@ class SplashController extends GetxController implements GetxService {
   Future<bool> getConfigData() async {
     Response response = await splashRepo.getConfigData();
     bool _isSuccess = false;
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       _configModel = ConfigModel.fromJson(response.body);
       _isSuccess = true;
-    }else {
+    } else {
       ApiChecker.checkApi(response);
       _isSuccess = false;
     }
@@ -42,18 +41,19 @@ class SplashController extends GetxController implements GetxService {
   bool isRestaurantClosed() {
     DateTime _open = DateFormat('hh:mm').parse('');
     DateTime _close = DateFormat('hh:mm').parse('');
-    DateTime _openTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _open.hour, _open.minute);
-    DateTime _closeTime = DateTime(_currentTime.year, _currentTime.month, _currentTime.day, _close.hour, _close.minute);
-    if(_closeTime.isBefore(_openTime)) {
+    DateTime _openTime = DateTime(_currentTime.year, _currentTime.month,
+        _currentTime.day, _open.hour, _open.minute);
+    DateTime _closeTime = DateTime(_currentTime.year, _currentTime.month,
+        _currentTime.day, _close.hour, _close.minute);
+    if (_closeTime.isBefore(_openTime)) {
       _closeTime = _closeTime.add(Duration(days: 1));
     }
-    if(_currentTime.isAfter(_openTime) && _currentTime.isBefore(_closeTime)) {
+    if (_currentTime.isAfter(_openTime) && _currentTime.isBefore(_closeTime)) {
       return false;
-    }else {
+    } else {
       return true;
     }
   }
-
 
   void setFirstTimeConnectionCheck(bool isChecked) {
     _firstTimeConnectionCheck = isChecked;

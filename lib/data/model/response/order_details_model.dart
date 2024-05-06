@@ -1,38 +1,38 @@
 class OrderDetailsModel {
-  int id;
-  int foodId;
-  int orderId;
-  double price;
-  FoodDetails foodDetails;
-  List<Variations> variation;
-  List<AddOn> addOns;
-  double discountOnFood;
-  String discountType;
-  int quantity;
-  double taxAmount;
-  String variant;
-  String createdAt;
-  String updatedAt;
-  int itemCampaignId;
-  double totalAddOnPrice;
+  int? id;
+  int? foodId;
+  int? orderId;
+  double? price;
+  FoodDetails? foodDetails;
+  List<Variations>? variation;
+  List<AddOn>? addOns;
+  double? discountOnFood;
+  String? discountType;
+  int? quantity;
+  double? taxAmount;
+  String? variant;
+  String? createdAt;
+  String? updatedAt;
+  int? itemCampaignId;
+  double? totalAddOnPrice;
 
   OrderDetailsModel(
       {this.id,
-        this.foodId,
-        this.orderId,
-        this.price,
-        this.foodDetails,
-        this.variation,
-        this.addOns,
-        this.discountOnFood,
-        this.discountType,
-        this.quantity,
-        this.taxAmount,
-        this.variant,
-        this.createdAt,
-        this.updatedAt,
-        this.itemCampaignId,
-        this.totalAddOnPrice});
+      this.foodId,
+      this.orderId,
+      this.price,
+      this.foodDetails,
+      this.variation,
+      this.addOns,
+      this.discountOnFood,
+      this.discountType,
+      this.quantity,
+      this.taxAmount,
+      this.variant,
+      this.createdAt,
+      this.updatedAt,
+      this.itemCampaignId,
+      this.totalAddOnPrice});
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -45,13 +45,13 @@ class OrderDetailsModel {
     if (json['variation'] != null) {
       variation = [];
       json['variation'].forEach((v) {
-        variation.add(new Variations.fromJson(v));
+        variation!.add(new Variations.fromJson(v));
       });
     }
     if (json['add_ons'] != null) {
       addOns = [];
       json['add_ons'].forEach((v) {
-        addOns.add(new AddOn.fromJson(v));
+        addOns!.add(new AddOn.fromJson(v));
       });
     }
     discountOnFood = json['discount_on_food'].toDouble();
@@ -72,13 +72,13 @@ class OrderDetailsModel {
     data['order_id'] = this.orderId;
     data['price'] = this.price;
     if (this.foodDetails != null) {
-      data['food_details'] = this.foodDetails.toJson();
+      data['food_details'] = this.foodDetails!.toJson();
     }
     if (this.variation != null) {
-      data['variation'] = this.variation.map((v) => v.toJson()).toList();
+      data['variation'] = this.variation!.map((v) => v.toJson()).toList();
     }
     if (this.addOns != null) {
-      data['add_ons'] = this.addOns.map((v) => v.toJson()).toList();
+      data['add_ons'] = this.addOns!.map((v) => v.toJson()).toList();
     }
     data['discount_on_food'] = this.discountOnFood;
     data['discount_type'] = this.discountType;
@@ -94,9 +94,9 @@ class OrderDetailsModel {
 }
 
 class AddOn {
-  String name;
-  double price;
-  int quantity;
+  String? name;
+  double? price;
+  int? quantity;
 
   AddOn({this.name, this.price, this.quantity});
 
@@ -115,56 +115,55 @@ class AddOn {
   }
 }
 
-
 class FoodDetails {
-  int id;
-  String name;
-  String description;
-  String image;
-  List<CategoryIds> categoryIds;
-  List<Variations> variations;
-  List<AddOns> addOns;
-  List<ChoiceOptions> choiceOptions;
-  double price;
-  double tax;
-  String taxType;
-  double discount;
-  String discountType;
-  String availableTimeStarts;
-  String availableTimeEnds;
-  int restaurantId;
-  String createdAt;
-  String updatedAt;
-  String restaurantName;
-  double restaurantDiscount;
-  double avgRating;
-  int veg;
-  int ratingCount;
+  int? id;
+  String? name;
+  String? description;
+  String? image;
+  List<CategoryIds>? categoryIds;
+  List<Variations>? variations;
+  List<AddOns>? addOns;
+  List<ChoiceOptions>? choiceOptions;
+  double? price;
+  double? tax;
+  String? taxType;
+  double? discount;
+  String? discountType;
+  String? availableTimeStarts;
+  String? availableTimeEnds;
+  int? restaurantId;
+  String? createdAt;
+  String? updatedAt;
+  String? restaurantName;
+  double? restaurantDiscount;
+  double? avgRating;
+  int? veg;
+  int? ratingCount;
 
   FoodDetails(
       {this.id,
-        this.name,
-        this.description,
-        this.image,
-        this.categoryIds,
-        this.variations,
-        this.addOns,
-        this.choiceOptions,
-        this.price,
-        this.tax,
-        this.taxType,
-        this.discount,
-        this.discountType,
-        this.availableTimeStarts,
-        this.availableTimeEnds,
-        this.restaurantId,
-        this.createdAt,
-        this.updatedAt,
-        this.restaurantName,
-        this.restaurantDiscount,
-        this.avgRating,
-        this.veg,
-        this.ratingCount});
+      this.name,
+      this.description,
+      this.image,
+      this.categoryIds,
+      this.variations,
+      this.addOns,
+      this.choiceOptions,
+      this.price,
+      this.tax,
+      this.taxType,
+      this.discount,
+      this.discountType,
+      this.availableTimeStarts,
+      this.availableTimeEnds,
+      this.restaurantId,
+      this.createdAt,
+      this.updatedAt,
+      this.restaurantName,
+      this.restaurantDiscount,
+      this.avgRating,
+      this.veg,
+      this.ratingCount});
 
   FoodDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -174,25 +173,25 @@ class FoodDetails {
     if (json['category_ids'] != null) {
       categoryIds = [];
       json['category_ids'].forEach((v) {
-        categoryIds.add(new CategoryIds.fromJson(v));
+        categoryIds!.add(new CategoryIds.fromJson(v));
       });
     }
     if (json['variations'] != null) {
       variations = [];
       json['variations'].forEach((v) {
-        variations.add(new Variations.fromJson(v));
+        variations!.add(new Variations.fromJson(v));
       });
     }
     if (json['add_ons'] != null) {
       addOns = [];
       json['add_ons'].forEach((v) {
-        addOns.add(new AddOns.fromJson(v));
+        addOns!.add(new AddOns.fromJson(v));
       });
     }
     if (json['choice_options'] != null) {
       choiceOptions = [];
       json['choice_options'].forEach((v) {
-        choiceOptions.add(new ChoiceOptions.fromJson(v));
+        choiceOptions!.add(new ChoiceOptions.fromJson(v));
       });
     }
     price = json['price'].toDouble();
@@ -219,17 +218,17 @@ class FoodDetails {
     data['description'] = this.description;
     data['image'] = this.image;
     if (this.categoryIds != null) {
-      data['category_ids'] = this.categoryIds.map((v) => v.toJson()).toList();
+      data['category_ids'] = this.categoryIds!.map((v) => v.toJson()).toList();
     }
     if (this.variations != null) {
-      data['variations'] = this.variations.map((v) => v.toJson()).toList();
+      data['variations'] = this.variations!.map((v) => v.toJson()).toList();
     }
     if (this.addOns != null) {
-      data['add_ons'] = this.addOns.map((v) => v.toJson()).toList();
+      data['add_ons'] = this.addOns!.map((v) => v.toJson()).toList();
     }
     if (this.choiceOptions != null) {
       data['choice_options'] =
-          this.choiceOptions.map((v) => v.toJson()).toList();
+          this.choiceOptions!.map((v) => v.toJson()).toList();
     }
     data['price'] = this.price;
     data['tax'] = this.tax;
@@ -251,7 +250,7 @@ class FoodDetails {
 }
 
 class CategoryIds {
-  String id;
+  String? id;
 
   CategoryIds({this.id});
 
@@ -267,8 +266,8 @@ class CategoryIds {
 }
 
 class Variations {
-  String type;
-  double price;
+  String? type;
+  double? price;
 
   Variations({this.type, this.price});
 
@@ -286,9 +285,9 @@ class Variations {
 }
 
 class AddOns {
-  int id;
-  String name;
-  double price;
+  int? id;
+  String? name;
+  double? price;
 
   AddOns({this.id, this.name, this.price});
 
@@ -308,9 +307,9 @@ class AddOns {
 }
 
 class ChoiceOptions {
-  String name;
-  String title;
-  List<String> options;
+  String? name;
+  String? title;
+  List<String>? options;
 
   ChoiceOptions({this.name, this.title, this.options});
 

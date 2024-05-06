@@ -8,18 +8,18 @@ import 'package:get/get.dart';
 
 class NotificationDialog extends StatelessWidget {
   final NotificationModel notificationModel;
-  NotificationDialog({@required this.notificationModel});
+  NotificationDialog({required this.notificationModel});
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      child:  Container(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      child: Container(
         width: 400,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
@@ -27,44 +27,53 @@ class NotificationDialog extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
-
             Container(
-              height: 150, width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL), color: Theme.of(context).primaryColor.withOpacity(0.20)),
+              height: 150,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_LARGE),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                  color: Theme.of(context).primaryColor.withOpacity(0.20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
                 child: FadeInImage.assetNetwork(
                   placeholder: Images.placeholder,
-                  image: '${Get.find<SplashController>().configModel.baseUrls.notificationImageUrl}/${notificationModel.image}',
-                  height: 150, width: MediaQuery.of(context).size.width, fit: BoxFit.cover,
+                  image:
+                      '${Get.find<SplashController>().configModel.baseUrls!.notificationImageUrl!}/${notificationModel.image}',
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
                   imageErrorBuilder: (c, o, s) => Image.asset(
-                    Images.placeholder, height: 150,
-                    width: MediaQuery.of(context).size.width, fit: BoxFit.cover,
+                    Images.placeholder,
+                    height: 150,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
             SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_LARGE),
               child: Text(
-                notificationModel.title,
+                notificationModel.title!,
                 textAlign: TextAlign.center,
-                style: robotoMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_LARGE),
+                style: robotoMedium.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: Dimensions.FONT_SIZE_LARGE),
               ),
             ),
-
             Padding(
               padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Text(
-                notificationModel.description,
+                notificationModel.description!,
                 textAlign: TextAlign.center,
-                style: robotoRegular.copyWith(color: Theme.of(context).disabledColor),
+                style: robotoRegular.copyWith(
+                    color: Theme.of(context).disabledColor),
               ),
             ),
-
           ],
         ),
       ),
